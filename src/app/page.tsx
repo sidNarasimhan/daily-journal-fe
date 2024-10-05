@@ -40,7 +40,7 @@ export default function Home() {
   useEffect(() => {
     const fetchEntry = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/stats`);
+        const response = await axios.get(`https://daily-journal-be.onrender.com/api/stats`);
         if (response.data) {
           console.log("response", response.data);
           setHealth(response.data.health);
@@ -112,7 +112,7 @@ export default function Home() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/daily-entry", {
+      const response = await axios.post("https://daily-journal-be.onrender.com/daily-entry", {
         date: date,
         entry: userInput,
       });
@@ -141,7 +141,7 @@ export default function Home() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/ask", {
+      const response = await axios.post("https://daily-journal-be.onrender.com/api/ask", {
         entry: userInput,
       });
       if (response.data) {
@@ -161,7 +161,7 @@ export default function Home() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/personal", {
+      const response = await axios.post("https://daily-journal-be.onrender.com/api/personal", {
         entry: userInput,
       });
       // Handle response as needed
