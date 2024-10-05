@@ -4,8 +4,8 @@ interface Props {
 }
 
 export default function HealthBar({ value, type }: Props) {
-  var color = "white";
-  var fontColor = "black";
+  let color = "white";
+  let fontColor = "black";
   if (value > 50) {
     fontColor = "white";
   }

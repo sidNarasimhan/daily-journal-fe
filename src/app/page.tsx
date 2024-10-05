@@ -20,7 +20,7 @@ export default function Home() {
   const [charisma, setCharsima] = useState(0);
   const [skill, setSkill] = useState(0);
   const [intellect, setIntellect] = useState(0); // Default energy value
-  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
+  const date = useState(new Date().toISOString().split("T")[0]);
   const [displayString, setDisplayString] = useState(
     "You have been doing fantasic lately, Tell me how your day was today..."
   );
@@ -83,7 +83,7 @@ export default function Home() {
     };
   }, [isOptionsVisibile, currentOption, options]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUserInput(e.target.value);
   };
 
@@ -126,7 +126,7 @@ export default function Home() {
         setSkill(response.data.skill);
         setDisplayString(response.data.message);
         setIsInputVisible(false);
-        response.data.image ? setImage(response.data.image) : null;
+        if (response.data.image) setImage(response.data.image);
         setUserInput("");
       }
     } catch (error) {
@@ -165,6 +165,7 @@ export default function Home() {
         entry: userInput,
       });
       // Handle response as needed
+      console.log("response", response.data);
       setIsInputVisible(false);
       setUserInput("");
     } catch (error) {
@@ -232,7 +233,7 @@ export default function Home() {
                     .typeString(displayString)
                     .pauseFor(displayString.length * 50)
                     .callFunction(() => {
-                      userInput.length <= 0 ? setIsInputVisible(true) : null;
+                      if(userInput.length <= 0) {setIsInputVisible(true)} 
                     })
                     .start();
                 }}
