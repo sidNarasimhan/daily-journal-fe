@@ -1,0 +1,36 @@
+{
+  "name": "meditation-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "NODE_ENV=production node index.js",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "express": "^4.21.0",
+    "next": "14.2.13",
+    "react": "^18",
+    "react-dom": "^18",
+    "typewriter-effect": "^2.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.13",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5",
+    "cors": "^2.8.5",
+    "cosine-similarity": "^1.0.1",
+    "express": "^4.21.0",
+    "nodemon": "^3.1.7",
+    "openai": "^4.67.1",
+    "pg": "^8.13.0",
+    "zod": "^3.23.8"
+  }
+}
