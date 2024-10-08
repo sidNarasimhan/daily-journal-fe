@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Typewriter from "typewriter-effect";
 import HealthBar from "./HealthBar";
@@ -22,7 +22,7 @@ export default function Home() {
   const [intellect, setIntellect] = useState(0); // Default energy value
   const date = useState(new Date().toISOString().split("T")[0]);
   const [displayString, setDisplayString] = useState(
-    "You have been doing fantasic lately, Tell me how your day was today..."
+    "You have been doing fantastic lately, Tell me how your day was today..."
   );
   const [isInputVisible, setIsInputVisible] = useState(false);
   const [userInput, setUserInput] = useState("");
@@ -36,6 +36,17 @@ export default function Home() {
     { label: "Enter Personal Details", mode: InputMode.PersonalDetails },
     // Add more options here as needed
   ];
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleResize = useCallback(() => {
+    setIsMobile(window.innerWidth <= 1024);
+  }, []);
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [handleResize]);
 
   useEffect(() => {
     const fetchEntry = async () => {
@@ -194,14 +205,12 @@ export default function Home() {
 
   return (
     <div className="page-container">
-      <div className="row1">
-        <div className="column column1">
-          <div
-            id="avatar"
-            className="avatar-animation"
-            style={{ backgroundImage: `url(/${image}.gif)` }}
-          ></div>
-        </div>
+      <div
+        id="avatar"
+        className="avatar-animation"
+        style={{ backgroundImage: `url(/${image}.gif)` }}
+      ></div>
+      {!isMobile && (
         <div className="stats">
           <link
             href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
@@ -217,8 +226,8 @@ export default function Home() {
             <li>{<HealthBar value={intellect} type="Wisdom" />}</li>
           </ul>
         </div>
-      </div>
-      <div className="row2">
+      )}
+      <div className={`row2 ${isMobile ? 'mobile' : ''}`}>
         <div className="dialog-box" tabIndex={0}>
           <link
             href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
@@ -264,9 +273,9 @@ export default function Home() {
                   background: "transparent",
                   color: "#fff",
                   fontFamily: "Press Start 2P",
-                  fontSize: "18px",
+                  fontSize: isMobile ? "14px" : "18px",
                   width: "100%",
-                  height: "80px",
+                  height: isMobile ? "60px" : "80px",
                 }}
                 autoFocus
               />
