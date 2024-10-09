@@ -123,7 +123,7 @@ export default function Home() {
     }
 
     try {
-      const response = await axios.post("https://daily-journal-be.onrender.com/daily-entry", {
+      const response = await axios.post("https://daily-journal-be.onrender.com/api/daily-entry", {
         date: date,
         entry: userInput,
       });
