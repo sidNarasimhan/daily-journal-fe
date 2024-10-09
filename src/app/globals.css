@@ -42,6 +42,7 @@ body {
   align-items: center;
   height: 100vh; /* Full viewport height */
   position: relative; /* So that the health/energy bars can be absolutely positioned */
+  max-height: 100vh;
 }
 
 /* Avatar animation styling */
